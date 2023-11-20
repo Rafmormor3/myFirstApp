@@ -2,6 +2,8 @@ const express = require('express') //importamos express
 const app = express() ;
 const cors = require('cors');
 const marcaRoutes = require('./routes/indexMarca')
+const paisRoutes = require('./routes/indexPais')
+const tiendaRoutes = require('./routes/indexTienda')
 
 require('dotenv').config(); //hay que instalarlo
 
@@ -15,10 +17,13 @@ async function main(){
 }
 main().catch((err)=>console.log(err));
 
+
 app.use(cors());
 app.use(express.json());
 
 app.use('/marcas',marcaRoutes);
+app.use('/paises', paisRoutes);
+app.use('/tiendas', tiendaRoutes)
 
 
 // Iniciar el servidor en el puerto 3000
