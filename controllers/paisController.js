@@ -14,7 +14,7 @@ const getPais = async (req, res)=>{
   try{
     const paisFind = await Pais.findById({_id:req.params.id});
     if(paisFind!=null){
-      res.status(200).json({message:"Encontrado"})
+      res.status(200).json(paisFind)
     }else{
       res.json("No encontrado");
     }
