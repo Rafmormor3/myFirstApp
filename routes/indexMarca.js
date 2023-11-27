@@ -3,7 +3,7 @@ const router = express.Router();
 const {check} = require('express-validator');
 const{getMarcas,getMarca, postMarca, deleteMarca, putMarca } = require("../controllers/marcaController");
 const {validateFields} = require("../middlewares/validate-filelds");
-const {existMarca} = require("../helpers/db-validators")
+const {existMarca, canEditMarca} = require("../helpers/db-validators")
 
 router
 .route('/')
@@ -29,7 +29,7 @@ router
 ],deleteMarca)
 .put([
   check('id','No es un id válido de Mongo').isMongoId(),
-  check('nombre').custom(existMarca),
+  check('nombre').custom(canEditMarca),
   check('origen',"No puede tener numeros").isAlpha(),
   validateFields
 ], putMarca)

@@ -2,7 +2,10 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const MarcaSchema = new Schema({
-    nombre : String,
+    nombre : {
+        type : String,
+        unique : true
+    },
     grupo : String,
     origen : String
 });
