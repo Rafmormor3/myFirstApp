@@ -46,7 +46,7 @@ const deleteTienda = async (req, res) =>{
     }
 }
 
-const patchTienda = async (req, res)=>{
+const putTienda = async (req, res)=>{
     try{
         const updateTienda = await Tienda.findByIdAndUpdate({_id:req.params.id},req.body);
         if(updateTienda!=null){
@@ -59,4 +59,4 @@ const patchTienda = async (req, res)=>{
     }
 }
 
-module.exports={getTiendas, getTienda, postTienda, deleteTienda, patchTienda};
+module.exports={getTiendas, getTienda, postTienda, deleteTienda, putTienda};

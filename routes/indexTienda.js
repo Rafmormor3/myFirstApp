@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const {check} = require('express-validator');
-const {getTiendas, getTienda, postTienda, deleteTienda, patchTienda} = require('../controllers/tiendaController');
+const {getTiendas, getTienda, postTienda, deleteTienda, putTienda} = require('../controllers/tiendaController');
 const {validateFields} = require('../middlewares/validate-filelds');
 
 router
@@ -27,11 +27,10 @@ router
     check('id','Id no valido en Mongo').isMongoId(),
     validateFields
 ], deleteTienda)
-.patch([
-    check("numero", "Solo puede ser numerico").isNumeric(),
+.put([
     check("numero","No puede ser un numero negativo").isInt({min:0}),
     check('id','Id no valido en Mongo').isMongoId(),
     validateFields
-], patchTienda)
+], putTienda)
 
 module.exports = router;

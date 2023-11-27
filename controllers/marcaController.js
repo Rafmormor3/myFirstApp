@@ -48,7 +48,7 @@ const deleteMarca = async (req,res)=>{
     }
   }
 
-const patchMarca =  async (req,res)=>{
+const putMarca =  async (req,res)=>{
     try{
     const marcaNombre = await Marca.findByIdAndUpdate({_id : req.params.id}, req.body);
     if(marcaNombre!=null){
@@ -61,4 +61,4 @@ const patchMarca =  async (req,res)=>{
     }
   }
 
-module.exports = {getMarcas, getMarca, postMarca, deleteMarca, patchMarca};
+module.exports = {getMarcas, getMarca, postMarca, deleteMarca, putMarca};

@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const {check} = require('express-validator');
-const{getPaises,getPais, postPais, deletePais, patchPais } = require("../controllers/paisController");
+const{getPaises,getPais, postPais, deletePais, putPais } = require("../controllers/paisController");
 const {validateFields} = require("../middlewares/validate-filelds");
 const {existPais} = require("../helpers/db-validators")
 
@@ -27,7 +27,7 @@ router
   check('id','Id no valido en Mongo').isMongoId(),
   validateFields
 ],deletePais)
-.patch([
+.put([
   check('id','Id no valido en Mongo').isMongoId(),
   check('nombre','El nombre no puede estar vacio').not().isEmpty(),
   check('nombre').custom(existPais),
@@ -36,7 +36,7 @@ router
   check('numHabitantes','Solo puede estar formado por numeros').isNumeric(),
   check('numHabitantes','No puede ser negativo').isInt({min:0}),
   validateFields
-], patchPais)
+], putPais)
 
 module.exports=router;
 

@@ -50,7 +50,7 @@ const deletePais = async (req,res)=>{
     }
   }
 
-const patchPais =  async (req,res)=>{
+const putPais =  async (req,res)=>{
     try{
     const paisNombre = await Pais.findByIdAndUpdate({_id : req.params.id}, req.body);
     if(paisNombre!=null){
@@ -63,4 +63,4 @@ const patchPais =  async (req,res)=>{
     }
   }
 
-module.exports = {getPaises, getPais, postPais, deletePais, patchPais};
+module.exports = {getPaises, getPais, postPais, deletePais, putPais};

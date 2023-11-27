@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const {check} = require('express-validator');
-const{getMarcas,getMarca, postMarca, deleteMarca, patchMarca } = require("../controllers/marcaController");
+const{getMarcas,getMarca, postMarca, deleteMarca, putMarca } = require("../controllers/marcaController");
 const {validateFields} = require("../middlewares/validate-filelds");
 const {existMarca} = require("../helpers/db-validators")
 
@@ -27,12 +27,12 @@ router
   check('id','No es un id válido de Mongo').isMongoId(),
   validateFields
 ],deleteMarca)
-.patch([
+.put([
   check('id','No es un id válido de Mongo').isMongoId(),
   check('nombre').custom(existMarca),
   check('origen',"No puede tener numeros").isAlpha(),
   validateFields
-], patchMarca)
+], putMarca)
 
 module.exports=router;
 
