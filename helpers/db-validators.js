@@ -1,5 +1,6 @@
 const Marca = require('../models/marcas')
 const Pais = require('../models/paises')
+const User = require("../models/user")
 
 const existMarca = async (nombre)=>{
     const marcaDB = await Marca.findOne({nombre});
@@ -26,5 +27,21 @@ const canEditMarca = async (nombre, {req})=>{
     }
 }
 
+const existUserEmail = async (email)=>{
+    const userDb = await User.findOne({email});
+    if(userDb!=null){
+        throw new Error(`${email} ya existe en la base de datos.`)
+    }
 
-module.exports = {existMarca, existPais, canEditMarca}
+}
+
+const existUserLogin = async (login)=>{
+    const userDb = await User.findOne({login});
+    if(userDb!=null){
+        throw new Error(`${login} ya existe en la base de datos.`)
+    }
+
+}
+
+
+module.exports = {existMarca, existPais, canEditMarca, existUserEmail, existUserLogin}
