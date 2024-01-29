@@ -30,7 +30,7 @@ router
 .put([
   check('id','No es un id válido de Mongo').isMongoId(),
   check('nombre').custom(canEditMarca),
-  check('origen',"No puede tener numeros").isAlpha(),
+  check('origen',"No puede tener numeros"),
   validateFields
 ], putMarca)
 

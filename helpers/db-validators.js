@@ -18,6 +18,9 @@ const existPais = async (nombre)=>{
 
 const canEditMarca = async (nombre, {req})=>{
     const marca = await Marca.findOne({nombre});
+    console.log(nombre);
+    console.log(marca._id);
+    console.log(req.params.id);
     if(marca && marca._id!=req.params.id){
         throw new Error('No se puede actualizar');
     }
