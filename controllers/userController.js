@@ -37,7 +37,9 @@ const register = async (req, res) =>{
 
 const deleteUser = async (req,res)=>{
     try{
-    const user = await User.findByIdAndDelete({_id : req.params.id});
+    const user = await User.findById({_id : req.params.id});
+    user.active=false;
+    const deleted= await User.findByIdAndUpdate({_id:user.id})
     if(user!=null){
       res.status(200).json({message:"Eliminado"});
     }else{

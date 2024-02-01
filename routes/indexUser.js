@@ -14,6 +14,8 @@ router
   check('name','El nombre no puede estar vacio').not().isEmpty(),
   check('rol','El rol no puede estar vacio').not().isEmpty(),
   check('password','El password no puede estar vacio').not().isEmpty(),
+  //check('password',"Password Debil").matches("/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])([A-Za-z\d$@$!%*?&]|[^ ]){8}$/"),
+  check('email').isEmail(),
   check('email').custom(existUserEmail),
   check('login').custom(existUserLogin),
   validateFields
@@ -25,10 +27,6 @@ router
   check('id','No es un id válido de Mongo').isMongoId(),
   validateFields
 ], getUser)
-.delete([
-  check('id','No es un id válido de Mongo').isMongoId(),
-  validateFields
-],deleteUser)
 .put([
   check('id','No es un id válido de Mongo').isMongoId(),
   check('email').custom(existUserEmail),
